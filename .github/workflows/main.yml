@@ -14,4 +14,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: SteamRouteTool.exe
-          path: ./SteamRouteTool/bin/Release
+          path: ./SteamRouteTool/bin/Release/*.exe
