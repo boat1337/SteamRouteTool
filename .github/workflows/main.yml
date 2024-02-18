@@ -17,16 +17,18 @@ jobs:
       - name: Restore NuGet packages
         run: nuget restore SteamRouteTool.sln
       - name: Build
-        run: msbuild SteamRouteTool.sln -property:Configuration=Release
+        run: msbuild SteamRouteTool.sln -m -property:Configuration=Release
+      - name: Compress for release
+        run: Compress-Archive .\SteamRouteTool\bin\Release SteamRouteTool.zip
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: SteamRouteTool
-          path: ./SteamRouteTool/bin/Release
+          name: SteamRouteTool.zip
+          path: SteamRouteTool.zip
       - name: Create Release
         uses: ncipollo/release-action@v1.14.0
         with:
           name: "SteamRouteTool"
           body: "Built with GitHub actions."
-          artifacts: "SteamRouteTool"
+          artifacts: "*.zip"
           tag: release
