@@ -8,6 +8,8 @@ jobs:
   build:
     runs-on: windows-2019
     steps:
+      - name: setup-msbuild
+        uses: microsoft/setup-msbuild@v2
       - name: Build
         run: msbuild SteamRouteTool.sln -property:Configuration=Release
       - name: Upload artifact
