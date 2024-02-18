@@ -1,0 +1,17 @@
+name: Build
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-2019
+    steps:
+      - name: Build
+        run: msbuild SteamRouteTool.sln -property:Configuration=Release
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: SteamRouteTool.exe
+          path: ./SteamRouteTool/bin/Release
