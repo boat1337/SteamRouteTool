@@ -8,8 +8,7 @@ jobs:
   build:
     runs-on: windows-2019
     steps:
-      - name: List Directories
-        run: dir
+      - uses: actions/checkout@v4.1.1
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
       - name: Build
