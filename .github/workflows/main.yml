@@ -11,12 +11,14 @@ jobs:
       - uses: actions/checkout@v4.1.1
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2.0.0
+      - name: Restore NuGet packages
+        run: nuget restore SteamRouteTool.sln
       - name: Build
         run: msbuild SteamRouteTool.sln -property:Configuration=Release
-      - name: Zip release
-        run: Compress-Archive ./SteamRouteTool/bin/Release/ release.zip
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: SteamRouteTool.zip
-          path: ./release.zip
+          name: SteamRouteTool
+          path: ./SteamRouteTool/bin/Release
