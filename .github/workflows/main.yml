@@ -19,7 +19,7 @@ jobs:
       - name: Build
         run: msbuild SteamRouteTool.sln -m -property:Configuration=Release
       - name: Compress for release
-        run: Compress-Archive .\SteamRouteTool\bin\Release SteamRouteTool.zip
+        run: Compress-Archive .\SteamRouteTool\bin\Release\* SteamRouteTool.zip
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
